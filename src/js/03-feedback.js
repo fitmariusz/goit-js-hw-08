@@ -4,7 +4,7 @@ const dataReset = {
     email: "",
     message: "",
 };
-keyData = "feedback-form-state";
+const keyData = "feedback-form-state";
 
 const save = (key, value) => {
   try {
