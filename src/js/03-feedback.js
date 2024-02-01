@@ -1,8 +1,8 @@
 import _ from 'lodash'
 
 const dataReset = {
-    email: "",
-    message: "",
+    email: undefined,
+    message: undefined,
 };
 const keyData = "feedback-form-state";
 
@@ -56,7 +56,7 @@ inputText.addEventListener("input", _.throttle((evt) => {
 },500));
 
 form.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  localStorage.removeItem(keyData);
-  form.reset();
+    evt.preventDefault();
+    localStorage.removeItem(keyData);
+    form.reset();
 });
