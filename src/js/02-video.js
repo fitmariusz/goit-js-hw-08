@@ -6,8 +6,7 @@ const player = new Player("vimeo-player", {
     width: 640,
 });
 
-lastTime = localStorage.getItem("videoplayer-current-time")
-player.setCurrentTime(lastTime);
+player.setCurrentTime(localStorage.getItem("videoplayer-current-time"));
 
 player.on('timeupdate', _.throttle((actualTime) => {
     localStorage.setItem("videoplayer-current-time", actualTime.seconds);
