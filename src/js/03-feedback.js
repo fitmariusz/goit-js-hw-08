@@ -1,11 +1,10 @@
 import _ from 'lodash'
-
-const dataReset = {
-    email: undefined,
-    message: undefined,
+  const dataReset = {
+    email: "",
+    message: "",
 };
-const keyData = "feedback-form-state";
 
+const keyData = "feedback-form-state";
 const save = (key, value) => {
   try {
     const serializedState = JSON.stringify(value);
@@ -24,8 +23,6 @@ const load = (key) => {
   }
 };
 
-
-
 const remove = (key) => {
   try {
     localStorage.removeItem(key);
@@ -35,28 +32,20 @@ const remove = (key) => {
 };
 
 const form = document.querySelector(".feedback-form");
-const inputMail = document.querySelector("input");
-const inputText = document.querySelector("textarea");
-
-const dataForm = load(keyData); 
-
-console.log(dataForm);
+const dataForm = load(keyData);
 
 form.elements.email.value = dataForm.email ?? "";
 form.elements.message.value = dataForm.message ?? "";
 
-inputMail.addEventListener("input", _.throttle((evt) => {
-    dataForm.email = evt.target.value;
-    save(keyData, dataForm);
+form.addEventListener("input", _.throttle((evt) => {
+  dataForm.email = form.elements.email.value;
+  dataForm.message = form.elements.message.value;
+  save(keyData, dataForm);
 }, 500));
 
-inputText.addEventListener("input", _.throttle((evt) => {
-    dataForm.message = evt.target.value;
-    save(keyData, dataForm);
-},500));
-
 form.addEventListener("submit", (evt) => {
+    console.log(dataForm);
     evt.preventDefault();
-    localStorage.removeItem(keyData);
+    remove(keyData);
     form.reset();
 });
